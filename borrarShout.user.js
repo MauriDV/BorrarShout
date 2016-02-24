@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name Borrar Shout
+// @version 0.2
 // @namespace Violentmonkey Scripts
 // @match        http://www.taringa.net/mi
 // @author       @Mauri934 y @AndrewLedger
@@ -21,7 +22,6 @@ borrarShout = function(){
 	$("ul.hide.select-list").each(function(i,v){
 		if(ownerList[i]==global_data.user){
 			$(this).append("<li><a class='icon-eliminar require-login shout-action shout-action-delete' data-owner=\'"+ownerList[i]+"\' data-id=\'" +idList[i]+ "\' data-redirect='1'> Eliminar shout</li>");
-			$(".icon-eliminar.require-login.shout-action.shout-action-delete:gt(0)").hide();
 		}
 	})
 
@@ -33,8 +33,9 @@ borrarShout = function(){
 	});
 }
 $(document).ajaxSuccess(function(event, jqXHR, settings) {
+	$(".icon-eliminar.require-login.shout-action.shout-action-delete:gt(0)").hide();
    	if (settings.url.indexOf('ajax/feed/fetch') > -1 || settings.url.indexOf('serv/more/trend') > -1) {
-       		borrarShout();
+       	borrarShout();
    	}else{
 		borrarShout();
 	}

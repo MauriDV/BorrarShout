@@ -20,7 +20,8 @@ borrarShout = function(){
 
 	// Creacion del boton
 	$("ul.hide.select-list").each(function(i,v){
-		if(ownerList[i]==global_data.user){
+		if(ownerList[i]==global_data.user && ! $(this).hasClass('button-added')){
+			$(this).addClass('button-added');
 			$(this).append("<li><a class='icon-eliminar require-login shout-action shout-action-delete' data-owner=\'"+ownerList[i]+"\' data-id=\'" +idList[i]+ "\' data-redirect='1'> Eliminar shout</li>");
 		}
 	})
